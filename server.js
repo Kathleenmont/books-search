@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === "production") {
 
 
 // matches with "api/search"
-router.route("/")
+router.route("api/books")
   .get(booksController.findAll)
   .post(booksController.create);
 
@@ -29,7 +29,7 @@ router
   .delete(booksController.remove);
 
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks")
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks", { useNewUrlParser: true })
 
 // Send every other request to the React app
 // Define any API routes before this runs
