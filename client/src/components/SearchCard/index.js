@@ -35,7 +35,7 @@ const SearchCard = props => {
             </div>
           </div>
           <div className="col-sm-1">
-            <button data-id={props.id} onClick={() => {props.saveButtonClick()}} className="btn btn-info save-btn">Save</button>
+            <button data-id={props.id} onClick={() => {props.saveButtonClick(props.id)}} className="btn btn-info save-btn">Save</button>
           </div>
           </div>
       </span>

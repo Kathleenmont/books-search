@@ -3,7 +3,7 @@ import "./style.css";
 
 
 
-const SearchBar = (e, props) =>  {
+const SearchBar = (props) =>  {
     // render() {
     return (
         <div className="jumbotron">

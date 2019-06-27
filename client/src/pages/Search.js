@@ -7,7 +7,7 @@ import Nav from "../components/Nav";
 
 // import { Link } from "react-router-dom";
 let query;
-let saved;
+// let saved;
 
 class Search extends Component {
   constructor(props) {
@@ -18,13 +18,13 @@ class Search extends Component {
   }
   state = {
     books: [],
-    query: query,
+    search: query,
     title: "",
     authors: [],
     description: "",
     image: "",
     link: "",
-    saved: saved
+    saved: Boolean
   };
 
   componentDidMount() {
@@ -37,13 +37,13 @@ class Search extends Component {
       .then(res =>
         this.setState({
           books: res.data.items,
-          query: query,
+          search: query,
           title: "",
           authors: "",
           discription: "",
           image: "",
           link: "",
-          saved: saved
+          saved: Boolean
         })
       )
 
@@ -73,17 +73,34 @@ class Search extends Component {
     //   console.log(e)
     query = e.target.value;
     this.setState({
-      query: query
+      search: query
     });
   };
 
-  saveButtonClick = props => {
-    if (this.state.saved === false) {
-      saved = true;
+  saveButtonClick = key => {
+      console.log(key)
+      console.log(this.state)
+    
+        console.log("hi")
+     if (key === this.state.id) {
+
+    
       this.setState({
         saved: true
       });
+      console.log("STATE" + JSON.stringify(this.state))
+
+      API.saveBook({
+        title: this.state.title,
+        authors: this.state.authors,
+        description: this.state.description,
+        image: this.state.image,
+        link: this.state.link,
+        saved: true
+      })
     }
+      console.log("STATE" + JSON.stringify(this.state))
+    
   };
 
   // handleInputChange = event => {
