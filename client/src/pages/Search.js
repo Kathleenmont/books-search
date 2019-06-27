@@ -24,7 +24,7 @@ class Search extends Component {
     description: "",
     image: "",
     link: "",
-    saved: Boolean
+    // saved: this.saved
   };
 
   componentDidMount() {
@@ -43,7 +43,7 @@ class Search extends Component {
           discription: "",
           image: "",
           link: "",
-          saved: Boolean
+          // saved: this.saved
         })
       )
 
@@ -58,20 +58,22 @@ class Search extends Component {
   };
 
   handleInputClick = e => {
-    query = e.target.value;
+    e.preventDefault();
+    // query = e.target.value;
     console.log(query);
-    // e.preventDefault();
+    
     console.log("in here");
     // query = e.target.value;
     console.log("TTTAARRGGEETT =====" + e.target);
     console.log(query);
-    this.loadBooks();
+    // this.loadBooks();
     this.loadBooksEvent(e);
   };
 
   handleInputChange = e => {
-    //   console.log(e)
+     
     query = e.target.value;
+    console.log(query)
     this.setState({
       search: query
     });
@@ -80,48 +82,37 @@ class Search extends Component {
   saveButtonClick = key => {
       console.log(key)
       console.log(this.state)
-    
-        console.log("hi")
-     if (key === this.state.id) {
+    let i;
+    for (i = 0; i < this.state.books.length; i++) {
+
+     if (key === this.state.books[i].id) {
+      console.log(this.state.books[i])
 
     
-      this.setState({
-        saved: true
-      });
-      console.log("STATE" + JSON.stringify(this.state))
+      // this.setState({
+      //   saved: true
+      // });
+      // console.log("STATE" + JSON.stringify(this.state))
 
       API.saveBook({
-        title: this.state.title,
-        authors: this.state.authors,
-        description: this.state.description,
-        image: this.state.image,
-        link: this.state.link,
+        title: this.state.books[i].volumeInfo.title,
+        authors: this.state.books[i].volumeInfo.authors,
+        description: this.state.books[i].volumeInfo.description,
+        image: this.state.books[i].volumeInfo.imageLinks.thumbnail,
+        link: this.state.books[i].volumeInfo.infoLink,
         saved: true
       })
+      // .then(res => this.loadBooks())
+      .catch(err => console.log(err));
     }
-      console.log("STATE" + JSON.stringify(this.state))
+  };
+ 
     
   };
 
-  // handleInputChange = event => {
-  //     const { name, value } = event.target;
-  //     this.setState({
-  //       [name]: value
-  //     });
-  //   };
 
-  // handleFormSubmit = event => {
-  //     event.preventDefault();
-  //     if (this.state.title && this.state.author) {
-  //       API.saveBook({
-  //         title: this.state.title,
-  //         author: this.state.author,
-  //         synopsis: this.state.synopsis
-  //       })
-  //         .then(res => this.loadBooks())
-  //         .catch(err => console.log(err));
-  //     }
-  //   };
+
+ 
 
   render() {
     return (
@@ -131,7 +122,7 @@ class Search extends Component {
         <form>
           <SearchBar
             value={this.state.query}
-            onChange={this.handleInputChange}
+            handleInputChange={this.handleInputChange}
           />
           <SearchButton
             loadBooksEvent={this.loadBooksEvent}
@@ -148,7 +139,7 @@ class Search extends Component {
             author={book.volumeInfo.authors}
             description={book.volumeInfo.description}
             image={book.volumeInfo.imageLinks.thumbnail}
-            link={book.saleInfo.buyLink}
+            link={book.volumeInfo.infoLink}
             saved={book.saved}
           />
         ))}

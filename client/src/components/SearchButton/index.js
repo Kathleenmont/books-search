@@ -1,12 +1,12 @@
 import React from "react";
 import "./style.css";
 
-const SearchButton = props => {
+function SearchButton ({handleInputClick}) {
  
     return (
         
        
-        <button className="btn btn-info" onClick={() => {props.handleInputClick()}}>Search</button>
+        <button className="btn btn-info" onClick={(e) => {handleInputClick(e)}}>Search</button>
         
     )
     

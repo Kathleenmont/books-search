@@ -3,14 +3,15 @@ import "./style.css";
 
 
 
-const SearchBar = (props) =>  {
+function SearchBar ({handleInputChange, value}) {
+    console.log(handleInputChange)
     // render() {
     return (
         <div className="jumbotron">
             <h3>Book Search</h3>
            
-                <input className="form-control search-bar" value={props.value} onChange={() => {props.handleInputChange()}} default="Book-Name" ></input>
-                {props.children}
+                <input className="form-control search-bar" value={value} onChange={(event) => handleInputChange(event)} default="Book-Name" ></input>
+                {/* {props.children} */}
             
         </div>
     )

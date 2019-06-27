@@ -16,14 +16,16 @@ if (process.env.NODE_ENV === "production") {
 
 
 // matches with "api/search"
-router.route("api/books")
-  .get(booksController.findAll)
-  .post(booksController.create);
+router.route("/api/books")
+// console.log("in route api/books")
+  
+  .post(booksController.create)
+  // .get(booksController.findAll);
 
 
 // Matches with "/api/books/:id"
 router
-  .route("/:id")
+  .route("/api/books/:id")
   .get(booksController.findById)
   .put(booksController.update)
   .delete(booksController.remove);
