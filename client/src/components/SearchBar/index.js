@@ -5,9 +5,9 @@ import "./style.css";
 
 function SearchBar ({handleInputChange, value}) {
     console.log(handleInputChange)
-    // render() {
+  
     return (
-        <div className="jumbotron">
+        <div className="jumbotron bg-white">
             <h3>Book Search</h3>
            
                 <input className="form-control search-bar" value={value} onChange={(event) => handleInputChange(event)} default="Book-Name" ></input>
@@ -15,7 +15,7 @@ function SearchBar ({handleInputChange, value}) {
             
         </div>
     )
-    // }
+  
 }
 
 export default SearchBar;

@@ -4,6 +4,8 @@ import SearchCard from "../components/SearchCard";
 import SearchButton from "../components/SearchButton";
 import SearchBar from "../components/SearchBar";
 import Nav from "../components/Nav";
+import Jumbotron from "../components/Jumbotron";
+import SearchResultsWrapper from "../components/SearchResultsWrapper";
 
 // import { Link } from "react-router-dom";
 let query;
@@ -23,7 +25,7 @@ class Search extends Component {
     authors: [],
     description: "",
     image: "",
-    link: "",
+    link: ""
     // saved: this.saved
   };
 
@@ -42,7 +44,7 @@ class Search extends Component {
           authors: "",
           discription: "",
           image: "",
-          link: "",
+          link: ""
           // saved: this.saved
         })
       )
@@ -61,7 +63,7 @@ class Search extends Component {
     e.preventDefault();
     // query = e.target.value;
     console.log(query);
-    
+
     console.log("in here");
     // query = e.target.value;
     console.log("TTTAARRGGEETT =====" + e.target);
@@ -71,53 +73,44 @@ class Search extends Component {
   };
 
   handleInputChange = e => {
-     
     query = e.target.value;
-    console.log(query)
+    console.log(query);
     this.setState({
       search: query
     });
   };
 
   saveButtonClick = key => {
-      console.log(key)
-      console.log(this.state)
+    console.log(key);
+    console.log(this.state);
     let i;
     for (i = 0; i < this.state.books.length; i++) {
+      if (key === this.state.books[i].id) {
+        console.log(this.state.books[i]);
 
-     if (key === this.state.books[i].id) {
-      console.log(this.state.books[i])
+        // this.setState({
+        //   saved: true
+        // });
+        // console.log("STATE" + JSON.stringify(this.state))
 
-    
-      // this.setState({
-      //   saved: true
-      // });
-      // console.log("STATE" + JSON.stringify(this.state))
-
-      API.saveBook({
-        title: this.state.books[i].volumeInfo.title,
-        authors: this.state.books[i].volumeInfo.authors,
-        description: this.state.books[i].volumeInfo.description,
-        image: this.state.books[i].volumeInfo.imageLinks.thumbnail,
-        link: this.state.books[i].volumeInfo.infoLink,
-        saved: true
-      })
-      // .then(res => this.loadBooks())
-      .catch(err => console.log(err));
+        API.saveBook({
+          title: this.state.books[i].volumeInfo.title,
+          authors: this.state.books[i].volumeInfo.authors,
+          description: this.state.books[i].volumeInfo.description,
+          image: this.state.books[i].volumeInfo.imageLinks.thumbnail,
+          link: this.state.books[i].volumeInfo.infoLink,
+          saved: true
+        })
+          // .then(res => this.loadBooks())
+          .catch(err => console.log(err));
+      }
     }
   };
- 
-    
-  };
-
-
-
- 
 
   render() {
     return (
       <div>
-       
+        <Jumbotron />
         <h1>Search Page</h1>
         <form>
           <SearchBar
@@ -130,19 +123,21 @@ class Search extends Component {
           />
         </form>
         {/* </SearchBar> */}
-        {this.state.books.map(book => (
-          <SearchCard
-            saveButtonClick={this.saveButtonClick}
-            key={book.id}
-            id={book.id}
-            title={book.volumeInfo.title}
-            author={book.volumeInfo.authors}
-            description={book.volumeInfo.description}
-            image={book.volumeInfo.imageLinks.thumbnail}
-            link={book.volumeInfo.infoLink}
-            saved={book.saved}
-          />
-        ))}
+        <SearchResultsWrapper>
+          {this.state.books.map(book => (
+            <SearchCard
+              saveButtonClick={this.saveButtonClick}
+              key={book.id}
+              id={book.id}
+              title={book.volumeInfo.title}
+              author={book.volumeInfo.authors}
+              description={book.volumeInfo.description}
+              image={book.volumeInfo.imageLinks.thumbnail}
+              link={book.volumeInfo.infoLink}
+              saved={book.saved}
+            />
+          ))}
+        </SearchResultsWrapper>
       </div>
     );
   }

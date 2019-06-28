@@ -5,6 +5,7 @@ import SearchCard from "../components/SearchCard";
 // import SearchButton from "../components/SearchButton";
 // import SearchBar from "../components/SearchBar";
 // import Nav from "../components/Nav";
+import Jumbotron from "../components/Jumbotron"
 let query;
 
 class Saved extends Component {
@@ -30,25 +31,6 @@ class Saved extends Component {
         console.log(this.state);
       }
     
-    //   loadBooks = (state) => {
-        // API.getBooks({this.state.saved === true})
-        //   .then(res =>
-        //     this.setState({
-        //       books: res.data.items,
-        //       search: query,
-        //       title: "",
-        //       authors: "",
-        //       discription: "",
-        //       image: "",
-        //       link: "",
-        //       saved: true
-        //     })
-        //   )
-    
-        //   .catch(err => console.log(err));
-        // console.log(this.state.books);
-    //   };
-    
       loadBooksEvent = e => {
         console.log("in load books event");
         e.preventDefault();
@@ -58,10 +40,10 @@ class Saved extends Component {
     render() {
         return (
             <div>
-       
+              <Jumbotron />
             {this.state.books.map(book => (
               <SearchCard
-                saveButtonClick={this.saveButtonClick}
+                // saveButtonClick={this.saveButtonClick}
                 key={book.id}
                 id={book.id}
                 title={book.volumeInfo.title}
