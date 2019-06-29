@@ -5,10 +5,8 @@ import SearchButton from "../components/SearchButton";
 import SearchBar from "../components/SearchBar";
 import Jumbotron from "../components/Jumbotron";
 import SearchResultsWrapper from "../components/SearchResultsWrapper";
-
-// import { Link } from "react-router-dom";
 let query;
-// let saved;
+
 
 class Search extends Component {
   constructor(props) {
@@ -25,14 +23,14 @@ class Search extends Component {
     description: "",
     image: "",
     link: ""
-    // saved: this.saved
   };
 
+  // load inital books to page
   componentDidMount() {
     this.loadBooks();
-    console.log(this.state);
+  
   }
-
+  // get books and set state books to book array
   loadBooks = () => {
     API.getBooks(query)
       .then(res =>
@@ -44,52 +42,43 @@ class Search extends Component {
           discription: "",
           image: "",
           link: ""
-          // saved: this.saved
         })
       )
 
       .catch(err => console.log(err));
-    console.log(this.state.books);
+  
   };
 
+  // on click event for loading books
   loadBooksEvent = e => {
     console.log("in load books event");
     e.preventDefault();
     this.loadBooks();
   };
 
+  // click event for submit button
   handleInputClick = e => {
     e.preventDefault();
-    // query = e.target.value;
-    console.log(query);
-
-    console.log("in here");
-    // query = e.target.value;
-    console.log("TTTAARRGGEETT =====" + e.target);
-    console.log(query);
-    // this.loadBooks();
     this.loadBooksEvent(e);
   };
 
+  // OnChange event for search input 
   handleInputChange = e => {
+    // set query to the search value
     query = e.target.value;
-    console.log(query);
+    //  update query in state
     this.setState({
       search: query
     });
   };
 
+  // function for saving a book
   saveButtonClick = key => {
-    console.log(key);
-    console.log(this.state);
     let i;
+    // for loop to find book with the book id clicked. 
     for (i = 0; i < this.state.books.length; i++) {
       if (key === this.state.books[i].id) {
-        console.log("SAVED this passed in" +this.state.books[i].volumeInfo.title);
-        // this.setState({
-        //   saved: true
-        // });
-        // console.log("STATE" + JSON.stringify(this.state))
+        // make an object
         const newBook=
         {
           title: this.state.books[i].volumeInfo.title,
@@ -99,7 +88,7 @@ class Search extends Component {
           link: this.state.books[i].volumeInfo.infoLink,
           saved: true
         }
-        console.log(newBook);
+        // pass the data to searver side/mongo and update
         API.saveBook({
           id: this.state.books[i].id,
           title: this.state.books[i].volumeInfo.title,
@@ -109,7 +98,6 @@ class Search extends Component {
           link: this.state.books[i].volumeInfo.infoLink,
           saved: true
         })
-          // .then(res => this.loadBooks())
           .catch(err => console.log(err));
       }
     }
@@ -119,7 +107,6 @@ class Search extends Component {
     return (
       <div>
         <Jumbotron />
-        <h1>Search Page</h1>
         <form>
           <SearchBar
             value={this.state.query}
@@ -130,8 +117,8 @@ class Search extends Component {
             handleInputClick={this.handleInputClick}
           />
         </form>
-        {/* </SearchBar> */}
         <SearchResultsWrapper>
+          <h4 className="text-light">Search Page</h4>
           {this.state.books.map(book => (
             <SearchCard
               saveButtonClick={this.saveButtonClick}

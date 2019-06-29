@@ -5,8 +5,7 @@ function ViewButton (props) {
  
     return (
         
-       
-        <a href={props.link}><button className="btn btn-info" >View</button></a>
+        <a href={props.link}><button className="btn btn-dark" >View</button></a>
         
     )
     

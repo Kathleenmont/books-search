@@ -6,7 +6,7 @@ function SaveButton ({saveButtonClick, id}) {
     return (
         
        
-        <button data-id={id} onClick={(key) => {saveButtonClick(key)}} className="btn btn-info save-btn">Save</button>
+        <button data-id={id} onClick={(key) => {saveButtonClick(key)}} className="btn btn-info save-btn" id="save">Save</button>
         
     )
     

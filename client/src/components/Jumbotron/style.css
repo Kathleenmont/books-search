@@ -1,0 +1,13 @@
+.heading {
+    text-align: center;
+    background: #6D2E46;
+}
+h1 {
+    font-size: 65px;
+    font-family: 'Passion One', cursive;
+    color: white;
+}
+h3 {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}

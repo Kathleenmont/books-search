@@ -6,7 +6,7 @@ function SearchButton ({handleInputClick}) {
     return (
         
        
-        <button className="btn btn-info" onClick={(e) => {handleInputClick(e)}}>Search</button>
+        <button className="btn btn-dark search-btn" onClick={(e) => {handleInputClick(e)}}>Search</button>
         
     )
     

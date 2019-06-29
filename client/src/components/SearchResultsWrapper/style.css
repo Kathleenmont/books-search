@@ -3,13 +3,11 @@
     width: 100%;
     margin: 0 auto;
     padding: 30px;
+    font-family: 'Roboto', sans-serif;
     
 }
 .container-fluid {
     width: 100%
   }
 
-  /* .wrapper {
-      max-width: 100%;
-      max-width: 1000px;
-  } */
+ 

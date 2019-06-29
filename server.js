@@ -17,10 +17,11 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+// use api routes
 app.use(routes);
 
 
-
+// mongoose connection
 mongoose.connect(process.env.MONGODB_URI || "mongodb://user1:password1@ds263146.mlab.com:63146/heroku_5gsvxxm0", { useNewUrlParser: true })
 
 

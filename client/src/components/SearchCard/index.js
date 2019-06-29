@@ -8,7 +8,7 @@ import DeleteButton from "../DeleteButton";
 const SearchCard = props => {
 
   return (
-    <div className="container bg-light">
+    <div className="container  search-card">
       <span href={props.link}>
         <div className="row row">
           <div className="col-sm-3">
@@ -40,8 +40,7 @@ const SearchCard = props => {
           </div>
           <div className="col-sm-1">
             
-            <button data-id={props.id} onClick={() => {props.saveButtonClick(props.id)}} className="btn btn-info save-btn">Save</button>
-            {/* <SaveButton data-id={props.id} key={props.key} SaveButtonClick={props.SaveButtonClick}/> */}
+            <button data-id={props.id} onClick={() => {props.saveButtonClick(props.id)}} className="btn btn-dark save-btn">Save</button> {/* <SaveButton data-id={props.id} key={props.key} SaveButtonClick={props.SaveButtonClick}/> */}
             {props.viewable ? <ViewButton link={props.link}/> : <DeleteButton id={props.id} data-id={props.id} deleteBook={props.deleteBook}/>}
           </div>
           </div>

@@ -5,7 +5,7 @@ function Jumbotron () {
  
     return (
         
-       <div className="jumbotron bg-light">
+       <div className="jumbotron heading">
            <h1> Book Search </h1>
            <h3> Search for and save books</h3>
        </div>
