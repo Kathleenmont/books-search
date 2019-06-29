@@ -3,7 +3,6 @@ import API from "../utils/API";
 import SearchCard from "../components/SearchCard";
 import SearchButton from "../components/SearchButton";
 import SearchBar from "../components/SearchBar";
-import Nav from "../components/Nav";
 import Jumbotron from "../components/Jumbotron";
 import SearchResultsWrapper from "../components/SearchResultsWrapper";
 
@@ -86,14 +85,23 @@ class Search extends Component {
     let i;
     for (i = 0; i < this.state.books.length; i++) {
       if (key === this.state.books[i].id) {
-        console.log(this.state.books[i]);
-
+        console.log("SAVED this passed in" +this.state.books[i].volumeInfo.title);
         // this.setState({
         //   saved: true
         // });
         // console.log("STATE" + JSON.stringify(this.state))
-
+        const newBook=
+        {
+          title: this.state.books[i].volumeInfo.title,
+          authors: this.state.books[i].volumeInfo.authors,
+          description: this.state.books[i].volumeInfo.description,
+          image: this.state.books[i].volumeInfo.imageLinks.thumbnail,
+          link: this.state.books[i].volumeInfo.infoLink,
+          saved: true
+        }
+        console.log(newBook);
         API.saveBook({
+          id: this.state.books[i].id,
           title: this.state.books[i].volumeInfo.title,
           authors: this.state.books[i].volumeInfo.authors,
           description: this.state.books[i].volumeInfo.description,

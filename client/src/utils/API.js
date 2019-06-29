@@ -17,17 +17,19 @@ export default {
   },
 
   // Gets all books
-  // getBooks: function() {
-  //   return axios.get("/api/books");
-  // },
+  getBooksSaved: function() {
+    return axios.get("/api/books");
+  },
 
   // Gets the book with the given id
   getBook: function(id) {
+    // console.log("inside /api/lskfj")
     return axios.get("/api/books/" + id);
   },
   // Saves a book to the database
   saveBook: function(bookData) {
     console.log(bookData)
+    
     return axios.post("/api/books", bookData);
   },
 

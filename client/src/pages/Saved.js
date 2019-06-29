@@ -9,12 +9,12 @@ import Jumbotron from "../components/Jumbotron"
 let query;
 
 class Saved extends Component {
-    constructor(props) {
-        super(props);
-        // this.handleInputClick = this.handleInputClick.bind(this);
-        // this.loadBooksEvent = this.loadBooksEvent.bind(this);
-        // this.loadBooks = this.loadBooks.bind(this);
-      }
+    // constructor(props) {
+    //     super(props);
+    //     // this.handleInputClick = this.handleInputClick.bind(this);
+    //     // this.loadBooksEvent = this.loadBooksEvent.bind(this);
+    //     // this.loadBooks = this.loadBooks.bind(this);
+    //   }
       state = {
         books: [],
         search: query,
@@ -27,7 +27,7 @@ class Saved extends Component {
       };
     
       componentDidMount() {
-        // this.loadBooks();
+        this.loadBooks();
         console.log(this.state);
       }
     
@@ -37,6 +37,25 @@ class Saved extends Component {
         this.loadBooks();
       };
 
+      loadBooks = () => {
+        API.getBooksSaved()
+          .then(res =>
+            this.setState({
+              books: res.data,
+              search: query,
+              title: "",
+              authors: "",
+              discription: "",
+              image: "",
+              link: ""
+              // saved: this.saved
+            })
+          )
+    
+          .catch(err => console.log(err));
+        console.log(this.state.books);
+      };
+
     render() {
         return (
             <div>
@@ -44,13 +63,13 @@ class Saved extends Component {
             {this.state.books.map(book => (
               <SearchCard
                 // saveButtonClick={this.saveButtonClick}
-                key={book.id}
-                id={book.id}
-                title={book.volumeInfo.title}
-                author={book.volumeInfo.authors}
-                description={book.volumeInfo.description}
-                image={book.volumeInfo.imageLinks.thumbnail}
-                link={book.saleInfo.buyLink}
+                key={book._id}
+                id={book._id}
+                title={book.title}
+                author={book.authors}
+                description={book.description}
+                image={book.image}
+                link={book.link}
                 saved={book.saved}
               />
             ))}
