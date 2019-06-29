@@ -135,6 +135,7 @@ class Search extends Component {
           {this.state.books.map(book => (
             <SearchCard
               saveButtonClick={this.saveButtonClick}
+              deleteBook={this.deleteBook}
               key={book.id}
               id={book.id}
               title={book.volumeInfo.title}
@@ -143,6 +144,7 @@ class Search extends Component {
               image={book.volumeInfo.imageLinks.thumbnail}
               link={book.volumeInfo.infoLink}
               saved={book.saved}
+              viewable
             />
           ))}
         </SearchResultsWrapper>

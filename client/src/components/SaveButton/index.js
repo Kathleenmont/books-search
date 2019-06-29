@@ -1,15 +1,15 @@
-// import React from "react";
-// import "./style.css";
+import React from "react";
+import "./style.css";
 
-// function SaveButton ({saveButtonClick, id, key}) {
+function SaveButton ({saveButtonClick, id}) {
  
-//     return (
+    return (
         
        
-//         <button data-id={id} onClick={(key) => {saveButtonClick(key)}} className="btn btn-info save-btn">Save</button>
+        <button data-id={id} onClick={(key) => {saveButtonClick(key)}} className="btn btn-info save-btn">Save</button>
         
-//     )
+    )
     
-// }
+}
 
-// export default SaveButton;
+export default SaveButton;

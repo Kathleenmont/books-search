@@ -37,6 +37,32 @@ class Saved extends Component {
         this.loadBooks();
       };
 
+      deleteBook = id => {
+        API.deleteBook(id)
+          .then(res => this.loadBooks())
+          .catch(err => console.log(err));
+      };
+      // saveButtonClick = key => {
+      //   console.log(key);
+      //   console.log(this.state);
+      //   let i;
+      //   for (i = 0; i < this.state.books.length; i++) {
+      //     if (key === this.state.books[i].key) {
+      //       console.log("SAVED this passed in" +this.state.books[i].volumeInfo.title);
+      //       // this.setState({
+      //       //   saved: true
+      //       // });
+           
+      //       console.log(newBook);
+      //       API.deleteBook({
+           
+      //       })
+      //         // .then(res => this.loadBooks())
+      //         .catch(err => console.log(err));
+      //     }
+      //   }
+      // };
+
       loadBooks = () => {
         API.getBooksSaved()
           .then(res =>
@@ -64,6 +90,7 @@ class Saved extends Component {
               <SearchCard
                 // saveButtonClick={this.saveButtonClick}
                 key={book._id}
+               
                 id={book._id}
                 title={book.title}
                 author={book.authors}
@@ -71,6 +98,8 @@ class Saved extends Component {
                 image={book.image}
                 link={book.link}
                 saved={book.saved}
+                deleteBook={this.deleteBook}
+                
               />
             ))}
           </div>

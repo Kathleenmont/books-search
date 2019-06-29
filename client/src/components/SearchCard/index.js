@@ -1,6 +1,8 @@
 import React from "react";
 import "./style.css";
 import ViewButton from "../ViewButton";
+// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import DeleteButton from "../DeleteButton";
 // import SaveButton from "../SaveButton";
 
 const SearchCard = props => {
@@ -37,9 +39,10 @@ const SearchCard = props => {
             </div>
           </div>
           <div className="col-sm-1">
+            
             <button data-id={props.id} onClick={() => {props.saveButtonClick(props.id)}} className="btn btn-info save-btn">Save</button>
             {/* <SaveButton data-id={props.id} key={props.key} SaveButtonClick={props.SaveButtonClick}/> */}
-            <ViewButton link={props.link}/>
+            {props.viewable ? <ViewButton link={props.link}/> : <DeleteButton id={props.id} data-id={props.id} deleteBook={props.deleteBook}/>}
           </div>
           </div>
       </span>
