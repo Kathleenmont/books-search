@@ -24,11 +24,15 @@
 .search-card {
     font-family: 'Roboto', sans-serif;
     background: #A26769;
-    margin-bottom: 15px;
 }
 
 p {
     font-family: 'Roboto', sans-serif;
 }
+h4 {
+    font-display: bold;
+}
+
+
 
 

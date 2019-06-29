@@ -29,7 +29,7 @@ const SearchCard = props => {
             <div className="card">
               <div className="card-body" >
                 <div className="card-header text-center">
-                <p className="card-title">{props.title}</p>
+                <h4 className="card-title">{props.title}</h4>
                 <p className="card-text">{props.author}</p>
                 </div>
               

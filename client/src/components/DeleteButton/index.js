@@ -6,7 +6,7 @@ function DeleteButton ({id, deleteBook}) {
     return (
         
        
-        <button data-id={id} onClick={() => {deleteBook(id)}} className="btn btn-danger" >Delete</button>
+        <button data-id={id} onClick={() => {deleteBook(id)}} className="btn delete-button" >Delete</button>
         
     )
     
